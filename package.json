@@ -1,0 +1,19 @@
+{
+  "name": "lab2-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsSexy/Lab2-Crud.git"
+  },
+  "author": "Brady",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsSexy/Lab2-Crud/issues"
+  },
+  "homepage": "https://github.com/IsSexy/Lab2-Crud#readme"
+}
