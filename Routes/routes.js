@@ -2,14 +2,13 @@ const express = require('express');
 
 const app = express();
 
-//Import our page routes
+//Import our routes
+const pageRoutes = require('./pages.js');
 const movieRoutes = require('./movies.js');
 
-//Register our Page Routes with our app
+//Register our routes within our app
 app.use('/', pageRoutes);
-app.use('/blogs', blogRoutes);
-app.use('/authors', authorRoutes);
-app.use('/', sessionsRoutes);
+app.use('/movies', movieRoutes);
 
 //Export changes
 module.exports = app;

@@ -1,24 +1,17 @@
 const Movie = require ('../models/movie');
 
 exports.new = (req, res) => {
-    req.isAuthenticated();
-
-    res.render('blogs/new', {
-        title: 'New Blog Post'
+    res.render('movies/new', {
+        title: 'New Movie'
     });
 };
 
 exports.index = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.find({
-        author: req.session.userId
-    })
-    .populate('author')
-    .then(blogs => {
-        res.render('blogs/index', {
-            blogs: blogs,
-            title: 'Archive'
+    Movie.find()
+    .then(movies => {
+        res.render('movies/index', {
+            movies: movies,
+            title: 'Our Movies'
         });
     })
     .catch(err => {
@@ -28,131 +21,81 @@ exports.index = (req, res) => {
 };
 
 exports.show = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.Blog.findOne({
-        _id: req.params.id,
-        author: req.session.userId
+    Movie.findOne({
+        _id: req.params.id
       })
-    .then(blog => {
-        res.render('blogs/show', {
-            blog: blog,
-            title: blog.title
+    .then(movie => {
+        res.render('movies/show', {
+            movie: movie,
+            title: movie.title
         });
     })
     .catch(err => {
         req.flash('error', `ERROR: ${err}`);
-        res.redirect('/blogs');
+        res.redirect('/movies');
     });
 };
 
 exports.create = (req, res) => {
-    req.isAuthenticated();
-
-    req.body.blog.author = req.session.userId;
-    Blog.create(req.body.blog)
+    Movie.create(req.body.movie)
     .then(() => {
-        req.flash('success', 'New blog created successfully!');
-        res.redirect('/blogs');
+        req.flash('success', 'New movie created successfully!');
+        res.redirect('/movies');
     })
     .catch(err => {
         req.flash('error', `ERROR: ${err}`);
         res.render('/new', {
-            title: 'New Blog',
-            blog: req.body.blog
+            title: 'New Movie',
+            movie: req.body.movie
         });
-    });
-};
-
-exports.drafts = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.find({
-        author: req.session.userId
-    })
-    .drafts()
-    .then(blogs => {
-        res.render('blogs/drafts', {
-            blogs: blogs,
-            title: 'Drafts'
-        });
-    })
-    .catch(err => {
-        req.flash('error', `ERROR: ${err}`);
-        res.redirect('/blogs');
-    });
-};
-
-exports.published = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.find()
-    .published()
-    .then(blogs => {
-        res.render('blogs/published', {
-            blogs: blogs,
-            title: 'Published'
-        });
-    })
-    .catch(err => {
-        req.flash('error', `ERROR: ${err}`);
-        res.redirect('/blogs');
     });
 };
 
 exports.edit = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.findOne({
-        _id: req.params.id,
-        author: req.session.userId
+    Movie.findOne({
+        _id: req.params.id
     })
-    .then(blog => {
-        res.render('blogs/edit', {
-            title: `Edit: ${blog.title}`,
-            blog: blog
+    .then(movie => {
+        res.render('movies/edit', {
+            title: `Edit: ${movie.title}`,
+            movie: movie
         });
     })
     .catch(err => {
         req.flash('error', `ERROR: ${err}`);
-        res.redirect('/blogs');
+        res.redirect('/movies');
     });
 };
 
 exports.update = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.updateOne({
+    Movie.updateOne({
         _id: req.body.id
-    }, req.body.blog, {
+    }, req.body.movie, {
         runValidators: true
     })
     .then(() => {
-        req.flash('success', 'Your blog was updated successfully!')
-        res.redirect('/blogs');
+        req.flash('success', 'Your movie was updated successfully!')
+        res.redirect('/movies');
     })
     .catch(err => {
         req.flash('error', `ERROR: ${err}`);
-        res.render('blogs/edit', {
-            title: `Edit: ${req.body.blog.title}`,
-            blog: req.body.blog
+        res.render('movies/edit', {
+            title: `Edit: ${req.body.movie.title}`,
+            movie: req.body.movie
         });
     });
 };
 
 exports.delete = (req, res) => {
-    req.isAuthenticated();
-
-    Blog.deleteOne({
-        _id: req.body.id,
-        author: req.session.userId
+    Movie.deleteOne({
+        _id: req.body.id
     })
     .then(() => {
-        req.flash('success', 'Blog deleted successfully!');
-        res.redirect('/blogs');
+        req.flash('success', 'Movie deleted successfully!');
+        res.redirect('/movies');
     })
     .catch(err => {
         req.flash('error', `ERROR: ${err}`);
-        res.redirect('/blogs');
+        res.redirect('/movies');
     });
 };

@@ -1,17 +1,15 @@
 const router = require('express').Router();
 
 //Our controllers
-const BlogsController = require('../Controllers/blogsController.js');
+const MoviesController = require('../Controllers/moviesController.js');
 
 //Creating routes
-router.get('/', BlogsController.index);
-router.get('/drafts', BlogsController.drafts);
-router.get('/published', BlogsController.published);
-router.get('/new', BlogsController.new);
-router.get('/:id', BlogsController.show);
-router.post('/', BlogsController.create);
-router.get('/edit/:id', BlogsController.edit);
-router.post('/update', BlogsController.update);
-router.post('/delete', BlogsController.delete);
+router.get('/', MoviesController.index);
+router.get('/new', MoviesController.new);
+router.get('/:id', MoviesController.show);
+router.post('/', MoviesController.create);
+router.get('/edit/:id', MoviesController.edit);
+router.post('/update', MoviesController.update);
+router.post('/delete', MoviesController.delete);
 
 module.exports = router;

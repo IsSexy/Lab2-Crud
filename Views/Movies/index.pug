@@ -1,0 +1,28 @@
+extends ../Partials/main.pug
+block content
+  .container
+    header
+      h1= title
+
+    div
+      table.table.table-striped
+        thead
+          tr
+            th Title
+            th Description
+            th Genre
+            th Actions
+        
+        tbody
+          each movie in movies
+            tr
+              td
+                a(href=`/movies/${movie.id}`)= movie.title
+              td= movie.description
+              td= movie.genre
+              td
+                a(href=`/movies/edit/${movie.id}`) Edit
+                = ' | '
+                form.destory(action=`/movie/delete`, method="POST", onsubmit=`return confirm("Are you sure?")`, class="destroy")
+                  input(type="hidden", name="id", value=movie.id)
+                  input(type="submit", value="delete")
