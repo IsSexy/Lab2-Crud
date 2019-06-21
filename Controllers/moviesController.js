@@ -1,4 +1,4 @@
-const Movie = require ('../models/movie');
+const Movie = require ('../Models/movie.js');
 
 exports.new = (req, res) => {
     res.render('movies/new', {
