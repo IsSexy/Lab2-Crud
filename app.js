@@ -51,7 +51,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //Assets
-app.use('/css', express.static('./Assets/stylesheets'));
+app.use('/css', express.static('./assets/stylesheets'));
 
 //Our views path
 app.set('Views', path.join(__dirname, 'Views'));

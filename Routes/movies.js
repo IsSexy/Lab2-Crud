@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 //Our controllers
-const MoviesController = require('../Controllers/moviesController.js');
+const MoviesController = require('../controllers/moviesController.js');
 
 //Creating routes
 router.get('/', MoviesController.index);
