@@ -1,0 +1,9 @@
+extends ../Partials/main.pug
+block content
+  .container
+    header
+      h1= movie.title
+      small= movie.genre.toLowerCase()
+
+    div
+      = movie.description || "Your story is processing..."

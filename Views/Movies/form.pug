@@ -7,14 +7,14 @@ form(action=(movie ? '/movies/update' : '/movies'), method="POST")
         input.form-control(name="movie[title]", required, value=(movie ? movie.title : null))
 
     .form-group
-        label Content
+        label Description
         textarea.form-control(name="movie[description]")
             = movie ? movie.description : null
 
     .form-group
         label Genre
         select.form-control(name="movie[genre]", required)
-            each genre in ['NONE', 'COMEDY']
+            each genre in ['NONE', 'COMEDY', 'ROMANCE', 'HORROR', 'OTHER']
                 option(value=genre, selected=(movie && movie.genre === genre))
                     = genre.toLowerCase()
 

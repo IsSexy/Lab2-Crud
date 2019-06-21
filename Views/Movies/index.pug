@@ -23,6 +23,6 @@ block content
               td
                 a(href=`/movies/edit/${movie.id}`) Edit
                 = ' | '
-                form.destory(action=`/movie/delete`, method="POST", onsubmit=`return confirm("Are you sure?")`, class="destroy")
+                form.destory(action=`/movies/delete`, method="POST", onsubmit=`return confirm("Are you sure?")`, class="destroy")
                   input(type="hidden", name="id", value=movie.id)
                   input(type="submit", value="delete")
