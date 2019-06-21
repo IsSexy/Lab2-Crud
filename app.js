@@ -58,7 +58,7 @@ app.set('Views', path.join(__dirname, 'Views'));
 app.set('view engine', 'pug');
 
 //Our routes
-const routes = require('./Routes/routes.js');
+const routes = require('./routes/routes.js');
 app.use('/', routes);
 
 const port = (process.env.PORT || 4000);
